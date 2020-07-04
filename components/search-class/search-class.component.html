@@ -1,0 +1,62 @@
+<div class="container text-center" >
+    <form  #searchForm="ngForm"  (ngSubmit)="search(searchKey.value,searchType.value)">
+        <div class="form-group text-center" style="width: 35%;margin: auto;margin-top: 25px;">
+          <input type="text" ngModel #searchKey="ngModel" name="searchKey"  class="form-control" required placeholder="{{'search-class'|translate}}">
+    
+        </div>
+       
+        <div *ngIf="searchKey.touched &&searchKey.errors?.required"  style="width: 35%;margin: auto;margin-top: 25px;"   class="alert alert-danger col-sm-5 ">{{'search-error'|translate}}</div>
+    
+        <select   ngModel #searchType="ngModel" name="searchType" class="form-control"  style="width: 17em;margin: auto;margin-top: 10px;" >
+    
+          <option value="" disabled  selected>{{'search-by'|translate}}</option>
+          <option value="Class Name">{{'class-name'|translate}}</option>
+  
+        </select>
+    
+      
+    
+    
+       <div class="form-group text-center" style="margin-top: 25px;">
+    
+        <button type="submit" [disabled]="searchForm.invalid" (click)="search(searchKey.value,searchType.value)" class="btn btn-primary">{{'search'|translate}}</button>
+    </div>
+      </form>
+      <div style="display:none"  class="alert  alert-danger messageerror">{{'no-search-result'|translate}}</div>
+
+        <h3 class="text-center">{{'search-result'|translate}}</h3>
+        <table class="table table-hover  table-stripped table-bordered">
+            <thead class="thead-dark">
+              <tr>
+                <th>{{'id'|translate}}</th>
+                <th>{{'class-name'|translate}}</th>
+                <th>{{'class-floor'|translate}}</th>
+                <th>{{'class-max-size'|translate}}</th>
+                <th>{{'class-current-size'|translate}}</th>
+                <th colspan="3">{{'ACTIONS'|translate}}</th>
+                
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let class of classes | paginate:{id:'listing_pagination',
+              itemsPerPage:5,
+            currentPage:page,totalItems:totalRecords} "  class="text-center">
+          
+            <th scope="row">{{class.id}}</th>
+            <td>{{class.name}}</td>
+            <td>{{class.floor}}</td>
+            <td>{{class.maxSize}}</td>
+            <td>{{class.currentSize}}</td>
+                <td><button   class="btn btn-warning" (click)="updateClass(class.id)">{{'update'|translate}}</button></td>
+                <td ><button class="btn btn-primary" (click)="detailsClass(class.id)" >{{'details'|translate}}</button></td>
+                <td ><button class="btn btn-danger" (click)="deleteClass(class.id)" >{{'delete'|translate}}</button></td>
+        
+              </tr>
+           
+            </tbody>
+        
+          </table>
+        <div>
+          <pagination-controls nextLabel="{{'next-label'|translate}}" previousLabel="{{'previous-label'|translate}}"   id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page=$event"></pagination-controls>
+        </div>
+          </div>

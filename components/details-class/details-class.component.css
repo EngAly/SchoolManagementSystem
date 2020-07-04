@@ -1,0 +1,6 @@
+.list-group-item:hover{
+    background-color: orange;
+}
+.list-group-item{
+    transition: linear 0.5s;
+}

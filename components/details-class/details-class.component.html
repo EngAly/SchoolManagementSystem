@@ -1,0 +1,41 @@
+<!--Start Container-->
+<div class="container text-center">
+    <h3 class="text-center" style="color:indianred;margin-top: 15px;margin-bottom:20px;margin-right: 150px;"> {{'class-info'|translate}}
+    </h3>
+  <hr/>
+    <!--Start Form-->
+    <form #classForm="ngForm" >
+      <!--Start Row-->
+    <div class="row" >
+  
+      <!--start Left-->
+      <div class="col-lg-6 col-sm-12 left">
+        
+        <!--start general Information-->
+  
+
+        <div class="card" style="width: 25rem;">
+          <div class="card-header" style="background-color: #0390fc;color: white;">
+            {{'class-general-info'|translate}}
+          </div>
+          <div class="list-group list-group-flush">
+            <label class="list-group-item personal">{{'class-name'|translate}} : <span class="normal ">{{myClass.name}}</span></label>
+            <label class="list-group-item personal">{{'class-floor'|translate}} : <span class="normal">{{myClass.floor}}</span></label>
+            <label class="list-group-item personal">{{'class-max-size'|translate}}: <span class="normal">{{myClass.maxSize}}</span></label>
+            <label class="list-group-item personal">{{'class-current-size'|translate}} : <span class="normal">{{myClass.currentSize}}</span></label>
+          </div>
+        </div>
+    
+
+  <hr/>   
+
+    </div>      <!--End General Information-->
+ </div>
+  <hr/>
+      <button  routerLink="/list-class" style="margin:auto;display:block;"  class="btn btn-secondary">{{'class-list-return'|translate}}</button>
+    </form>
+  
+    <!--End form-->
+     </div>
+    
+     <!--End Container-->
